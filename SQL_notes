@@ -1,0 +1,13 @@
+Question: There is one table called orders, which has date, customer identifier, order identifiera and an amount.
+          Write a SQL query that returns the distribution of orders per customer.
+
+SELECT number_of_order, count(customer_id)
+FROM 
+(SELECT customer_id,  
+        count(order_id) as number_of_order
+FROM order 
+GROUP BY customer_id) order_count
+GROUP BY number_of_order
+
+
+
