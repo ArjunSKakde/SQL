@@ -7,7 +7,33 @@ FROM
         count(order_id) as number_of_order
 FROM order 
 GROUP BY customer_id) order_count
-GROUP BY number_of_order
+GROUP BY number_of_order;
 
 
+
+Many B2B companies seperate there customers as enterprise SMB(small-medium size business) categories based on number of employees or revenue, 
+because there buying pattern are different.
+
+Imagine we are considering discounted shipping offers and we want to know how many customers will be effected, we can group order_amount into three buckets using a case statement.
+SELECT 
+          CASE WHEN order_amount <= 100 then 'upto 100'
+               WHEN order_amount <= 500 then 'upto 500'
+               else '500+' end as amount_bin
+          ,CASE WHEN order_amount <= 100 then 'small'
+               WHEN order_amount <= 500 then 'medium'
+               else 'large' end as amount_category
+          ,COUNT(customer_id) as customers
+FROM orders
+GROUP BY 1,2;
+
+
+Creating bines with using rounding
+SELECT ROUND(sales,-1) as bin,
+          COUNT(customer_id) as customers
+FROM orders
+GROUP BY 1;
+
+          
+
+          
 
