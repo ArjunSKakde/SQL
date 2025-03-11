@@ -33,6 +33,63 @@ SELECT ROUND(sales,-1) as bin,
 FROM orders
 GROUP BY 1;
 
+
+
+
+* Window Function or Analytical Function in python 
+- window function perform calculations that span multiple rows.
+- It takes function name and OVER clause that takes the rows.
+
+'''
+function(field_name) over (PARTITION BY field_name ORDER BY field_name)
+'''
+
+- Function can be any normal aggreagation(AVG, SUM, COUNT, MIN, MAX)
+- special function (RANK, FIRST_VALUE, NTILE)
+- use dense_rank() mostly
+- ROW_NUMBER
+- windows functions are costly for computing.
+
+- ntile
+- percentile_rank()
+
+
+
+## Finding duplicates in data
+SELECT COUNT(*)
+(
+          SELECT column1, column2, column3 ...
+                    , count(*) AS records
+          FROM table
+          GROUP BY 1,2,3 ...
+) t
+WHERE records > 1
+- we can also use group by here to know how many duplicates availabe for each value.
+- we can also use having in inside query so that we don't need to write subquery.
+
+
+{ Example of how duplicates can happens
+  - Imagine we want to list all of customers who have successfully completed the transaction 
+   so we can send them a coupen fo there next order.
+  - For that we might join the transaction table and customer table, in this case any join will cause duplication.
+  - To avoid such type of duplication we use distinct.
+  - Also we can use GROUP BY as we have use above.
+}
+
+
+# Type conversion and casting
+'''
+  CASE WHEN order_items  <= 3 then order_items
+          ELSE '4+'
+          END
+'''
+- This will raise an error for data type as data type in order_itmes is numeric and '4+' is string
+
+'''
+ CASE WHEN order_items <= 3 then order_items::varchar  / CAST(order_items,varchar)
+          ELSE '4+'
+
+
           
 
           
