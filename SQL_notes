@@ -90,6 +90,15 @@ WHERE records > 1
           ELSE '4+'
 
 
+# Dealing with Nulls : Colesce, nullif and nvl
+- colesce (num_orders, 0)
+- changing back to null : nullif(6,6)
+
+- sometime when we are filtering data wich contains null values and filter with some condition 
+  you might not get null values as a output.
+
+
+
           
 
           
