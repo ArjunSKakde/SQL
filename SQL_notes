@@ -99,6 +99,21 @@ WHERE records > 1
 
 
 
+#Returning current data
+SELECT current_date
+SELECT localtimestamp
+SELECT now()
+
+
+localtime
+current_time
+
+
+
+
+
+
+
           
 
           
